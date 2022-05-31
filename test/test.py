@@ -1,11 +1,13 @@
-def hmmm(x):
-    def f(y):
-        return y
-    return f
+def bake(cake, make):
+    if cake == 0:
+        cake = cake + 1
+        print(cake)
+    if cake == 1:
+        print(make)
+    else:
+        return cake
+    return make
+
 
 if __name__ == '__main__':
-    print(hmmm(5)(6))
-
-    x = 4
-    x = 8
-    print(x)
+    bake(1, "mashed potatoes")
