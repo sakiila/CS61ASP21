@@ -4,6 +4,8 @@
 
 [video](https://www.bilibili.com/video/BV1v64y1Q78o)
 
-[labs](/labs)
+[lab](/lab)
 
-[projects](/projects)
+[homework](/homework)
+
+[project](/project)
