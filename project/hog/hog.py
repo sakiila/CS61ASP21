@@ -316,7 +316,7 @@ def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
     avgs = {}
     for i in range(1, 11):
         avg = make_averaged(roll_dice, trials_count)(i, dice)
-        if avg in avgs:
+        if avg not in avgs:
             avgs[avg] = i
         else:
             if i < avgs[avg]:
@@ -362,7 +362,7 @@ def piggypoints_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 0 if piggy_points(opponent_score) >= score else num_rolls
+    return 0 if piggy_points(opponent_score) >= cutoff else num_rolls
     # END PROBLEM 10
 
 
