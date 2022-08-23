@@ -177,8 +177,32 @@ def sphinx_switches(start, goal, limit):
     >>> sphinx_switches("rose", "hello", big_limit)   # Substitute: r->h, o->e, s->l, e->l, length difference of 1.
     5
     """
+
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    def countchar(cstart, cgoal, count):
+        if count > limit:
+            return limit + 1
+        if not cstart and not cgoal:
+            return count
+        elif not cstart or not cgoal:
+            return countchar(cstart[1:], cgoal[1:], count + 1)
+        elif cstart[0] == cgoal[0]:
+            return countchar(cstart[1:], cgoal[1:], count)
+        else:
+            return countchar(cstart[1:], cgoal[1:], count + 1)
+
+    return countchar(start, goal, 0)
+
+    # if len(start) > 1 and len(goal) > 1:
+    #     if start[0] == goal[0]:
+    #         return sphinx_switches(start[1:], goal[1:], limit)
+    #     else:
+    #         return 1 + sphinx_switches(start[1:], goal[1:], limit)
+    # elif len(start) == 1 or len(goal) == 1:
+    #     if start[0] == goal[0]:
+    #         return abs(len(start) - len(goal))
+    #     else:
+    #         return max(len(start), len(goal))
     # END PROBLEM 6
 
 
@@ -199,24 +223,34 @@ def pawssible_patches(start, goal, limit):
     >>> pawssible_patches("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
+    if limit < 0:
+        return 0
 
-    if ______________:  # Fill in the condition
+    if not start and not goal:  # Fill in the condition
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return 0
         # END
 
-    elif ___________:  # Feel free to remove or add additional cases
+    elif not start or not goal:  # Feel free to remove or add additional cases
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return abs(len(start) - len(goal))
+        # END
+
+    elif start[0] == goal[0]:  # Feel free to remove or add additional cases
+        # BEGIN
+        "*** YOUR CODE HERE ***"
+        return pawssible_patches(start[1:], goal[1:], limit)
         # END
 
     else:
-        add = ...  # Fill in these lines
-        remove = ...
-        substitute = ...
+        add = pawssible_patches(start, goal[1:], limit - 1)  # Fill in these lines
+        remove = pawssible_patches(start[1:], goal, limit - 1)
+        substitute = pawssible_patches(start[1:], goal[1:], limit - 1)
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return min(add, remove, substitute) + 1
         # END
 
 
